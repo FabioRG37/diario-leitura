@@ -1,27 +1,63 @@
-# DiarioLeitura
+# 📖 Diário de Leitura
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Aplicativo desenvolvido com **Ionic + Angular**, que permite buscar livros pela **Google Books API**, organizar sua estante pessoal e acompanhar seu progresso de leitura.
 
-## Development server
+## 🎯 Objetivo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Criar um diário pessoal de leitura com funcionalidades como:
 
-## Code scaffolding
+- Buscar livros por título ou autor.
+- Visualizar detalhes dos livros.
+- Organizar livros nas listas: _Quero ler_, _Lendo_, _Lido_.
+- Acompanhar progresso de leitura.
+- Visualizar estatísticas pessoais.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🔧 Tecnologias utilizadas
 
-## Build
+- [Angular 16](https://angular.io/)
+- [Ionic 7](https://ionicframework.com/)
+- [Google Books API](https://developers.google.com/books)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SCSS](https://sass-lang.com/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🚀 Como executar o projeto
 
-## Running unit tests
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/diario-leitura.git
+   cd diario-leitura
+````
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Instale as dependências:
 
-## Running end-to-end tests
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Rode o servidor de desenvolvimento:
 
-## Further help
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Acesse o app no navegador:
+
+   ```
+   http://localhost:4200
+   ```
+
+## ✅ Funcionalidades já implementadas
+
+* Estrutura de páginas: Home, Busca, Detalhes do Livro, Estante, Estatísticas.
+* Integração com Google Books API.
+* Tela de busca com `ion-searchbar` e exibição de resultados.
+
+## 🛠️ Próximas funcionalidades
+
+* Tela de detalhes com sinopse e informações do livro.
+* Sistema de estante personalizada: Quero ler / Lendo / Lido.
+* Registro de progresso e estatísticas.
+
+---
+
+Feito com 💙 por \[Fábio Gonçalves]
