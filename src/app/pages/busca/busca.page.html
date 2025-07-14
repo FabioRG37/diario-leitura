@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Buscar Livros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-searchbar
+    [(ngModel)]="termoBusca"
+    (ionChange)="buscarLivros()"
+    placeholder="Digite o nome do livro ou autor">
+  </ion-searchbar>
+
+  <ion-list *ngIf="resultados.length > 0">
+    <ion-item *ngFor="let livro of resultados" [routerLink]="['/detalhes-livro', livro.id]">
+      <ion-thumbnail slot="start">
+        <img [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/sem-capa.png'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ livro.volumeInfo.title }}</h2>
+        <p>{{ livro.volumeInfo.authors?.join(', ') }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

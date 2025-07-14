@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+h2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+ion-button {
+  margin-top: 15px;
+}
