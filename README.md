@@ -1,16 +1,16 @@
 # 📖 Diário de Leitura
 
-Aplicativo desenvolvido com **Ionic + Angular**, que permite buscar livros pela **Google Books API**, organizar sua estante pessoal e acompanhar seu progresso de leitura.
+Aplicativo desenvolvido com **Ionic + Angular**, que permite buscar livros usando a **Google Books API**, organizá-los em uma estante personalizada e acompanhar o progresso de leitura.
 
 ## 🎯 Objetivo
 
-Criar um diário pessoal de leitura com funcionalidades como:
+Criar um diário de leitura digital com funcionalidades como:
 
-- Buscar livros por título ou autor.
-- Visualizar detalhes dos livros.
-- Organizar livros nas listas: _Quero ler_, _Lendo_, _Lido_.
-- Acompanhar progresso de leitura.
-- Visualizar estatísticas pessoais.
+- Buscar livros por título ou autor
+- Visualizar detalhes dos livros
+- Organizar livros nas listas: *Quero ler*, *Lendo*, *Lido*
+- Acompanhar o progresso de leitura
+- Visualizar estatísticas pessoais
 
 ## 🔧 Tecnologias utilizadas
 
@@ -40,24 +40,30 @@ Criar um diário pessoal de leitura com funcionalidades como:
    ng serve
    ```
 
-4. Acesse o app no navegador:
+4. Acesse no navegador:
 
    ```
    http://localhost:4200
    ```
 
-## ✅ Funcionalidades já implementadas
+## ✅ Funcionalidades implementadas
 
-* Estrutura de páginas: Home, Busca, Detalhes do Livro, Estante, Estatísticas.
-* Integração com Google Books API.
-* Tela de busca com `ion-searchbar` e exibição de resultados.
+* Página inicial com acesso às principais áreas do app
+* Tela de busca integrada à Google Books API
+* Exibição dos detalhes do livro com capa, título, autores, descrição, etc.
+* Botão "Adicionar à estante" com seleção de status (Quero ler / Lendo / Lido)
+* Armazenamento local com `localStorage`
+* Tela "Estante" com lista de livros salvos
+* Filtro por status na estante
 
 ## 🛠️ Próximas funcionalidades
 
-* Tela de detalhes com sinopse e informações do livro.
-* Sistema de estante personalizada: Quero ler / Lendo / Lido.
-* Registro de progresso e estatísticas.
+* Alterar status de leitura direto na estante
+* Remover livros da estante
+* Tela de estatísticas (livros lidos, em andamento, etc.)
+* Registro de progresso (% lido ou capítulos)
 
 ---
 
 Feito com 💙 por \[Fábio Gonçalves]
+

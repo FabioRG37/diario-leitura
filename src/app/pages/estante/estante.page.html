@@ -1,13 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>estante</ion-title>
+    <ion-title>Minha Estante</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">estante</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-segment [(ngModel)]="filtro" color="primary">
+    <ion-segment-button value="todos">Todos</ion-segment-button>
+    <ion-segment-button value="quero-ler">Quero ler</ion-segment-button>
+    <ion-segment-button value="lendo">Lendo</ion-segment-button>
+    <ion-segment-button value="lido">Lido</ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="livrosFiltrados.length > 0; else vazio">
+    <ion-item *ngFor="let livro of livrosFiltrados" [routerLink]="['/detalhes-livro', livro.id]">
+      <ion-thumbnail slot="start">
+        <img [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/sem-capa.png'" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ livro.volumeInfo.title }}</h2>
+        <p>{{ livro.volumeInfo.authors?.join(', ') }}</p>
+        <small>Status: {{ livro.status }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #vazio>
+    <p class="texto-central">Nenhum livro nesta categoria.</p>
+  </ng-template>
 </ion-content>

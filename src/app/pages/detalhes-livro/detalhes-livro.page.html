@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>detalhes-livro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/busca"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Livro</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalhes-livro</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<div class="container">
+  <ion-content class="ion-padding" *ngIf="livro">
+    <ion-card>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <img [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/sem-capa.png'" alt="Capa do livro" />
+        </ion-row>
+      </ion-grid>
+  
+      <ion-card-header>
+        <ion-card-title>{{ livro.volumeInfo.title }}</ion-card-title>
+        <ion-card-subtitle>{{ livro.volumeInfo.authors?.join(', ') }}</ion-card-subtitle>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <p><strong>Editora:</strong> {{ livro.volumeInfo.publisher || 'Não informado' }}</p>
+        <p><strong>Publicado em:</strong> {{ livro.volumeInfo.publishedDate || 'Não informado' }}</p>
+        <p><strong>Descrição:</strong></p>
+        <p [innerHTML]="livro.volumeInfo.description || 'Sem descrição disponível.'"></p>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-button color="primary" (click)="adicionarLivro()">
+      Adicionar à estante
+    </ion-button>
+  </ion-content>
+</div>
