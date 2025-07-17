@@ -2,8 +2,12 @@
   display: block;
 }
 
+.livro-card {
+  padding-top: 16px;
+}
 .texto-central {
   text-align: center;
   margin-top: 2rem;
-  color: #666;
+  color: var(--ion-color-primary);
+  font-style: italic;
 }

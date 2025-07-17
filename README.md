@@ -1,69 +1,62 @@
-# 📖 Diário de Leitura
+# Diário de Leitura 📚
 
-Aplicativo desenvolvido com **Ionic + Angular**, que permite buscar livros usando a **Google Books API**, organizá-los em uma estante personalizada e acompanhar o progresso de leitura.
+Aplicativo desenvolvido com **Ionic + Angular** para organizar sua estante virtual de livros e acompanhar o progresso de leitura.
 
-## 🎯 Objetivo
+## Funcionalidades
 
-Criar um diário de leitura digital com funcionalidades como:
+- 🔍 **Busca de livros** usando a Google Books API.
+- 📚 **Estante de leitura** com os seguintes status:
+  - Quero ler
+  - Lendo
+  - Lido
+- 🗑️ **Remoção de livros** diretamente pela estante.
+- 📄 **Detalhes do livro** com título, autores e imagem de capa.
+- 📂 **Armazenamento local** (localStorage) para persistência dos dados.
+- 🎨 **Layout responsivo** com uso de `ion-card`, `ion-grid` e animações (`@angular/animations`).
+- 📱 **Menu lateral (side menu)** para navegação entre páginas.
 
-- Buscar livros por título ou autor
-- Visualizar detalhes dos livros
-- Organizar livros nas listas: *Quero ler*, *Lendo*, *Lido*
-- Acompanhar o progresso de leitura
-- Visualizar estatísticas pessoais
+## Tecnologias utilizadas
 
-## 🔧 Tecnologias utilizadas
-
-- [Angular 16](https://angular.io/)
-- [Ionic 7](https://ionicframework.com/)
+- [Ionic Framework](https://ionicframework.com/)
+- [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
-- [TypeScript](https://www.typescriptlang.org/)
-- [SCSS](https://sass-lang.com/)
+- [@angular/animations](https://angular.io/guide/animations)
+- HTML5 + SCSS
 
-## 🚀 Como executar o projeto
+## Pré-requisitos
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/diario-leitura.git
-   cd diario-leitura
+- Node.js v18+
+- Ionic CLI
+- Angular CLI
+- NPM
+
+## Instalação
+
+```bash
+git clone https://github.com/FabioRG37/diario-leitura.git
+cd diario-leitura
+npm install
+ionic serve
 ````
 
-2. Instale as dependências:
+## Estrutura de diretórios
 
-   ```bash
-   npm install
-   ```
+```
+src/
+├── app/
+│   ├── components/        # Componentes reutilizáveis
+│   ├── pages/             # Páginas como estante e detalhes do livro
+│   └── services/          # Serviços para manipulação de dados
+├── assets/
+│   └── sem-capa.png       # Imagem padrão para livros sem capa
+```
 
-3. Rode o servidor de desenvolvimento:
+## Próximas melhorias
 
-   ```bash
-   ng serve
-   ```
-
-4. Acesse no navegador:
-
-   ```
-   http://localhost:4200
-   ```
-
-## ✅ Funcionalidades implementadas
-
-* Página inicial com acesso às principais áreas do app
-* Tela de busca integrada à Google Books API
-* Exibição dos detalhes do livro com capa, título, autores, descrição, etc.
-* Botão "Adicionar à estante" com seleção de status (Quero ler / Lendo / Lido)
-* Armazenamento local com `localStorage`
-* Tela "Estante" com lista de livros salvos
-* Filtro por status na estante
-
-## 🛠️ Próximas funcionalidades
-
-* Alterar status de leitura direto na estante
-* Remover livros da estante
-* Tela de estatísticas (livros lidos, em andamento, etc.)
-* Registro de progresso (% lido ou capítulos)
+* 📈 Indicador de progresso de leitura.
+* 📝 Anotações e resumos por livro.
+* 🔁 Sincronização com backend (futuramente).
 
 ---
 
-Feito com 💙 por \[Fábio Gonçalves]
-
+Feito com 💙 por Fábio Gonçalves
