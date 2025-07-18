@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Progresso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2 class="ion-margin-bottom">Defina seu progresso de leitura:</h2>
+
+  <ion-item>
+    <ion-label position="stacked">Progresso: {{ (progresso * 100) | number: '1.0-0' }}%</ion-label>
+    <ion-range
+      min="0"
+      max="1"
+      step="0.01"
+      [(ngModel)]="progresso"
+      color="success"
+    ></ion-range>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" class="ion-margin-top" (click)="salvarProgresso()">
+    Salvar
+  </ion-button>
+</ion-content>

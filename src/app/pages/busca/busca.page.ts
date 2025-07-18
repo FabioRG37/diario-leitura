@@ -4,7 +4,7 @@ import { GoogleBooksService } from 'src/app/services/google-books.service';
 @Component({
   selector: 'app-busca',
   templateUrl: './busca.page.html',
-  styleUrls: ['./busca.page.scss'],
+  styleUrls: ['./busca.page.css'],
 })
 export class BuscaPage {
   termoBusca = '';

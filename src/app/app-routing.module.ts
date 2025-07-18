@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'detalhes-livro/:id', loadChildren: () => import('./pages/detalhes-livro/detalhes-livro.module').then(m => m.DetalhesLivroPageModule) },
   { path: 'estante', loadChildren: () => import('./pages/estante/estante.module').then(m => m.EstantePageModule) },
   { path: 'estatisticas', loadChildren: () => import('./pages/estatisticas/estatisticas.module').then(m => m.EstatisticasPageModule) },
+  { path: 'editar-progresso', loadChildren: () => import('./pages/editar-progresso/editar-progresso.module').then(m => m.EditarProgressoPageModule) },
 ];
 
 @NgModule({

@@ -11,3 +11,15 @@
   color: var(--ion-color-primary);
   font-style: italic;
 }
+
+.progresso-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progresso-texto {
+  font-size: 0.8rem;
+  text-align: right;
+  color: var(--ion-color-medium);
+}

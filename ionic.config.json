@@ -1,5 +1,7 @@
 {
-  "name": "New Ionic App",
-  "integrations": {},
+  "name": "diario-leitura",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

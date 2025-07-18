@@ -20,14 +20,18 @@
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let livro of livrosFiltrados" [@fadeIn]>
 
         <ion-card class="livro-card" (click)="abrirDetalhes(livro.id)">
+
           <ion-row class="ion-justify-content-center">
             <img [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/sem-capa.png'" alt="Capa do Livro" />
           </ion-row>
+
           <ion-card-header>
             <ion-card-title>{{ livro.volumeInfo.title }}</ion-card-title>
             <ion-card-subtitle>{{ livro.volumeInfo.authors?.join(', ') }}</ion-card-subtitle>
           </ion-card-header>
+
           <ion-card-content>
+
             <ion-row class="ion-justify-content-between ion-align-items-center">
               <ion-badge color="medium">Status: {{ livro.status }}</ion-badge>
               <ion-button 
@@ -38,9 +42,35 @@
                 <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
               </ion-button>
             </ion-row>
+
+            <div *ngIf="livro.status === 'lendo'" class="progresso-container ion-margin-top">
+              <ion-row class="ion-align-items-center">
+                <ion-col size="10">
+                  <ion-progress-bar [value]="livro.progresso" color="success"></ion-progress-bar>
+                </ion-col>
+                <ion-col size="2" class="ion-text-right">
+                  <div class="progresso-texto">
+                    {{ (livro.progresso * 100) | number: '1.0-0' }}%
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+
+            <div *ngIf="livro.status === 'lendo'">
+              <ion-row>
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  color="medium"
+                  [routerLink]="['/editar-progresso', livro.id]"
+                >
+                  Editar progresso
+                </ion-button>
+              </ion-row>
+            </div>
+
           </ion-card-content>
         </ion-card>
-
       </ion-col>
     </ion-row>
   </ion-grid>

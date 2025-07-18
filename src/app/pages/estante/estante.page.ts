@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('300ms ease-in', style({ opacity: 1, transform: 'translateY(0)' }))
       ])
     ])
   ]
@@ -27,6 +27,12 @@ export class EstantePage implements OnInit {
 
   ionViewWillEnter() {
     this.carregarLivros();
+    this.livros = this.livros.map(livro => {
+      if (livro.status === 'lendo' && livro.progresso === undefined) {
+        livro.progresso = Math.random();
+      }
+      return livro;
+    })
   }
 
   carregarLivros() {
