@@ -1,24 +1,47 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/estante"></ion-back-button>
+    </ion-buttons>
     <ion-title>Editar Progresso</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h2 class="ion-margin-bottom">Defina seu progresso de leitura:</h2>
-
-  <ion-item>
-    <ion-label position="stacked">Progresso: {{ (progresso * 100) | number: '1.0-0' }}%</ion-label>
-    <ion-range
-      min="0"
-      max="1"
-      step="0.01"
-      [(ngModel)]="progresso"
-      color="success"
-    ></ion-range>
+<ion-content class="ion-padding ion-justify-content-center">
+  <ion-item *ngIf="livro?.volumeInfo?.pageCount; else inputPaginas">
+    <ion-label position="stacked">Total de páginas</ion-label>
+    <ion-input [value]="livro.volumeInfo.pageCount" readonly></ion-input>
   </ion-item>
 
-  <ion-button expand="block" color="primary" class="ion-margin-top" (click)="salvarProgresso()">
-    Salvar
-  </ion-button>
+  <ng-template #inputPaginas>
+    <ion-item>
+      <ion-label position="stacked">Total de páginas (preencher manualmente)</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="totalPaginasManual"
+        placeholder="Ex: 300"
+        required
+      ></ion-input>
+    </ion-item>
+  </ng-template>
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-item>
+          <ion-label position="floating">Páginas lidas</ion-label>
+          <ion-input type="number" [(ngModel)]="paginasLidas"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button color="primary" class="ion-margin-top" (click)="salvarProgresso()">
+          Salvar progresso
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

@@ -1,62 +1,69 @@
-# Diário de Leitura 📚
+# 📚 Diário de Leitura
 
-Aplicativo desenvolvido com **Ionic + Angular** para organizar sua estante virtual de livros e acompanhar o progresso de leitura.
+Aplicativo criado com **Ionic + Angular** para auxiliar no acompanhamento de livros em leitura. Permite buscar livros, adicioná-los à estante virtual com diferentes status, acompanhar o progresso de leitura por páginas e remover livros facilmente.
 
-## Funcionalidades
+## 🧩 Funcionalidades
 
-- 🔍 **Busca de livros** usando a Google Books API.
-- 📚 **Estante de leitura** com os seguintes status:
-  - Quero ler
+- 🔍 **Busca de livros** usando a API do Google Books
+- 📚 **Estante virtual** com os seguintes filtros:
+  - Todos
+  - Quero Ler
   - Lendo
   - Lido
-- 🗑️ **Remoção de livros** diretamente pela estante.
-- 📄 **Detalhes do livro** com título, autores e imagem de capa.
-- 📂 **Armazenamento local** (localStorage) para persistência dos dados.
-- 🎨 **Layout responsivo** com uso de `ion-card`, `ion-grid` e animações (`@angular/animations`).
-- 📱 **Menu lateral (side menu)** para navegação entre páginas.
+- ➕ **Adição de livros** à estante com seleção de status
+- ✏️ **Edição de progresso de leitura** com base no número de páginas lidas
+- 📈 **Exibição de barra de progresso** com a porcentagem lida
+- 🧮 **Inserção manual de total de páginas** para livros que não fornecem essa informação
+- 🗑️ **Remoção de livros** da estante
+- 🧭 **Navegação entre páginas** por menu lateral
 
-## Tecnologias utilizadas
+## 📷 Capturas de Tela
+
+> Adicione aqui prints das páginas: busca, estante, editar progresso.
+
+## 🚀 Tecnologias Utilizadas
 
 - [Ionic Framework](https://ionicframework.com/)
 - [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
-- [@angular/animations](https://angular.io/guide/animations)
-- HTML5 + SCSS
 
-## Pré-requisitos
+## ▶️ Como Rodar o Projeto
 
-- Node.js v18+
-- Ionic CLI
-- Angular CLI
-- NPM
-
-## Instalação
-
+1. **Clone o repositório**
 ```bash
 git clone https://github.com/FabioRG37/diario-leitura.git
 cd diario-leitura
-npm install
-ionic serve
 ````
 
-## Estrutura de diretórios
+2. **Instale as dependências**
 
-```
-src/
-├── app/
-│   ├── components/        # Componentes reutilizáveis
-│   ├── pages/             # Páginas como estante e detalhes do livro
-│   └── services/          # Serviços para manipulação de dados
-├── assets/
-│   └── sem-capa.png       # Imagem padrão para livros sem capa
+```bash
+npm install
 ```
 
-## Próximas melhorias
+3. **Execute o app em ambiente de desenvolvimento**
 
-* 📈 Indicador de progresso de leitura.
-* 📝 Anotações e resumos por livro.
-* 🔁 Sincronização com backend (futuramente).
+```bash
+ionic serve
+```
 
----
+## 📁 Estrutura de Páginas
 
-Feito com 💙 por Fábio Gonçalves
+* `/busca` – página para pesquisar livros
+* `/estante` – página principal com a estante e filtros
+* `/editar-progresso/:id` – página para atualizar progresso de leitura
+* `/detalhes/:id` – página com mais informações do livro
+
+## ✅ Status do Projeto
+
+✅ Funcional
+🔄 Melhorias futuras:
+
+* Marcar livro como finalizado ao atingir 100%
+* Sincronizar com conta do usuário
+* Histórico de leituras anteriores
+
+## 🧑‍💻 Desenvolvedor
+
+Fábio Gonçalves
+Desenvolvedor em transição para Ciência de Dados | [LinkedIn](https://www.linkedin.com/in/seu-usuario)

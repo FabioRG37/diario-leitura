@@ -63,6 +63,7 @@
                   fill="clear"
                   color="medium"
                   [routerLink]="['/editar-progresso', livro.id]"
+                  (click)="$event.stopPropagation()"
                 >
                   Editar progresso
                 </ion-button>
