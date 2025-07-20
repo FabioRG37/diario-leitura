@@ -1,69 +1,71 @@
 # 📚 Diário de Leitura
 
-Aplicativo criado com **Ionic + Angular** para auxiliar no acompanhamento de livros em leitura. Permite buscar livros, adicioná-los à estante virtual com diferentes status, acompanhar o progresso de leitura por páginas e remover livros facilmente.
+Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanhar o progresso de leitura de livros.
 
-## 🧩 Funcionalidades
+## ✨ Funcionalidades
 
-- 🔍 **Busca de livros** usando a API do Google Books
-- 📚 **Estante virtual** com os seguintes filtros:
-  - Todos
-  - Quero Ler
-  - Lendo
+- 🔍 **Busca de livros** através da [Google Books API](https://developers.google.com/books).
+- ➕ **Adição de livros à estante** com título, autor, imagem de capa e status.
+- 📊 **Registro e edição do progresso de leitura** (páginas lidas).
+- 📖 **Visualização da estante** com filtros por status:
   - Lido
-- ➕ **Adição de livros** à estante com seleção de status
-- ✏️ **Edição de progresso de leitura** com base no número de páginas lidas
-- 📈 **Exibição de barra de progresso** com a porcentagem lida
-- 🧮 **Inserção manual de total de páginas** para livros que não fornecem essa informação
-- 🗑️ **Remoção de livros** da estante
-- 🧭 **Navegação entre páginas** por menu lateral
+  - Lendo
+  - Quero ler
+- 📉 **Exibição do progresso (%) de leitura** em cada livro da estante.
+- ❌ **Remoção de livros** da estante.
+- 🧠 **Persistência de dados no localStorage** (offline-friendly).
+- 🎨 Interface com animações de entrada para uma melhor experiência do usuário.
 
-## 📷 Capturas de Tela
-
-> Adicione aqui prints das páginas: busca, estante, editar progresso.
-
-## 🚀 Tecnologias Utilizadas
+## 🧱 Tecnologias Utilizadas
 
 - [Ionic Framework](https://ionicframework.com/)
 - [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
+- HTML, SCSS, TypeScript
+- localStorage para persistência de dados
 
-## ▶️ Como Rodar o Projeto
+## 📦 Instalação
 
-1. **Clone o repositório**
-```bash
-git clone https://github.com/FabioRG37/diario-leitura.git
-cd diario-leitura
+1. Clone o repositório:
+   ```bash
+   git clone hhttps://github.com/FabioRG37/diario-leitura.git
+   cd seu-repositorio
 ````
 
-2. **Instale as dependências**
+2. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+3. Rode o app no navegador:
+
+   ```bash
+   ionic serve
+   ```
+
+## 📱 Gerar APK Android (em breve)
+
+Você poderá gerar o APK para Android com o Capacitor:
 
 ```bash
-npm install
+ionic build
+npx cap add android
+npx cap open android
 ```
 
-3. **Execute o app em ambiente de desenvolvimento**
+> Em breve será feita a configuração completa de build para Android.
 
-```bash
-ionic serve
-```
+## 🧩 Melhorias Futuras
 
-## 📁 Estrutura de Páginas
+* [ ] Melhorias no visual da interface (estilização avançada)
+* [ ] Sincronização em nuvem (Firebase ou similar)
+* [ ] Compartilhamento de leituras com amigos
+* [ ] Dark mode
 
-* `/busca` – página para pesquisar livros
-* `/estante` – página principal com a estante e filtros
-* `/editar-progresso/:id` – página para atualizar progresso de leitura
-* `/detalhes/:id` – página com mais informações do livro
+## 🧑‍💻 Autor
 
-## ✅ Status do Projeto
+Desenvolvido por **Fábio Gonçalves**
+Contato: [LinkedIn](https://www.linkedin.com/in/f%C3%A1bio-gon%C3%A7alves-509bb330/) | Email: [falsilgon@gmail.com](mailto:falsilgon@gmail.com)
 
-✅ Funcional
-🔄 Melhorias futuras:
-
-* Marcar livro como finalizado ao atingir 100%
-* Sincronizar com conta do usuário
-* Histórico de leituras anteriores
-
-## 🧑‍💻 Desenvolvedor
-
-Fábio Gonçalves
-Desenvolvedor em transição para Ciência de Dados | [LinkedIn](https://www.linkedin.com/in/seu-usuario)
+---

@@ -22,23 +22,31 @@ export class EstantePage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.carregarLivros()
-  }
-
-  ionViewWillEnter() {
     this.carregarLivros();
-    this.livros = this.livros.map(livro => {
-      if (livro.status === 'lendo' && livro.progresso === undefined) {
-        livro.progresso = Math.random();
-      }
-      return livro;
-    })
   }
 
   carregarLivros() {
     const dados = localStorage.getItem('estante');
-    this.livros = dados ? JSON.parse(dados) : [];
-  }
+    const livrosRaw = dados ? JSON.parse(dados) : [];
+
+    console.log("Livros carregados:", livrosRaw);
+
+    this.livros = livrosRaw.map((livro: any) => {
+      const totalPaginas = livro.totalPaginas ?? livro.volumeInfo?.pageCount ?? 0;
+      const paginasLidas = Number(livro.paginasLidas ?? 0);
+
+      const progresso = totalPaginas > 0 ? paginasLidas / totalPaginas : 0;
+      const percentual = Math.round(progresso * 100);
+
+      return {
+        ...livro,
+        totalPaginas,
+        paginasLidas,
+        progresso,
+        percentual
+      };
+    });
+  }    
 
   abrirDetalhes(id: string) {
     this.router.navigate(['/detalhes-livro', id]);  
@@ -52,6 +60,6 @@ export class EstantePage implements OnInit {
   removerLivro(event: Event, id: string) {
     event.stopPropagation(); // Impede a navegação
     this.livros = this.livros.filter(livro => livro.id !== id);
-    localStorage.setItem('livrosEstante', JSON.stringify(this.livros));
+    localStorage.setItem('estante', JSON.stringify(this.livros));
   }
 }

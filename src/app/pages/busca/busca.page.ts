@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleBooksService } from 'src/app/services/google-books.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-busca',
@@ -7,10 +9,25 @@ import { GoogleBooksService } from 'src/app/services/google-books.service';
   styleUrls: ['./busca.page.css'],
 })
 export class BuscaPage {
+  buscaSubject = new Subject<string>();
   termoBusca = '';
   resultados: any[] = [];
 
   constructor(private booksService: GoogleBooksService) {}
+
+  ngOnInit() {
+    this.buscaSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe((termo) => {
+      this.termoBusca = termo;
+      this.buscarLivros();
+    });
+  }
+
+  onInputChange(termo: string) {
+    this.buscaSubject.next(termo);
+  }
 
   buscarLivros() {
     if (!this.termoBusca.trim()) return;

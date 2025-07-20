@@ -6,9 +6,11 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item routerLink="/home" routerDirection="root">Home</ion-item>
-      <ion-item routerLink="/estante" routerDirection="root">Estante</ion-item>
-      <ion-item routerLink="/busca" routerDirection="root">Buscar Livro</ion-item>
+      <ion-menu-toggle autoHide="true">
+        <ion-item button (click)="navegarPara('/home')">Home</ion-item>
+        <ion-item button (click)="navegarPara('/estante')">Estante</ion-item>
+        <ion-item button (click)="navegarPara('/busca')">Buscar Livro</ion-item>
+      </ion-menu-toggle>
     </ion-list>
   </ion-content>
 </ion-menu>

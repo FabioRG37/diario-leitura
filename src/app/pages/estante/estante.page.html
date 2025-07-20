@@ -46,12 +46,17 @@
             <div *ngIf="livro.status === 'lendo'" class="progresso-container ion-margin-top">
               <ion-row class="ion-align-items-center">
                 <ion-col size="10">
-                  <ion-progress-bar [value]="livro.progresso" color="success"></ion-progress-bar>
+                  <ion-progress-bar [value]="livro.progresso" color="tertiary"></ion-progress-bar>
                 </ion-col>
                 <ion-col size="2" class="ion-text-right">
                   <div class="progresso-texto">
-                    {{ (livro.progresso * 100) | number: '1.0-0' }}%
+                    {{ (livro.percentual) }}%
                   </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p>{{ livro.paginasLidas }} de {{ livro.totalPaginas }} páginas</p>
                 </ion-col>
               </ion-row>
             </div>

@@ -11,7 +11,7 @@ export class EditarProgressoPage implements OnInit {
   livroId!: string;
   livro: any;
   paginasLidas: number = 0;
-  totalPaginasManual: number | null = null;
+  totalPaginasDetectado: number | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,23 +23,23 @@ export class EditarProgressoPage implements OnInit {
     this.livroId = this.route.snapshot.paramMap.get('id')!;
     await this.storage.create();
 
-    const livros = (await this.storage.get('livros')) || [];
+    const livros = JSON.parse(localStorage.getItem('estante') || '[]');
     this.livro = livros.find((l: any) => l.id === this.livroId);
 
-    if (this.livro?.progresso) {
-      this.paginasLidas = Math.round(this.livro.progresso * this.livro.volumeInfo.pageCount);
+    if (this.livro) {
+      const total = this.livro.volumeInfo?.pageCount || null;
+      this.totalPaginasDetectado = total;
+      this.paginasLidas = this.livro.paginasLidas ?? 0;
     }
+    console.log("Livro carregado:", this.livro);
   }
 
-  salvarProgresso() {
+  async salvarProgresso() {
     const paginasLidasNum = Number(this.paginasLidas);
-
-    // Verifica se veio da API ou foi informado manualmente
-    const totalPaginas =
-      this.livro?.volumeInfo?.pageCount || this.totalPaginasManual;
+    const totalPaginas = this.totalPaginasDetectado;
 
     if (!totalPaginas || totalPaginas <= 0) {
-      alert('Você precisa informar o número total de páginas.');
+      alert('Número total de páginas não encontrado.');
       return;
     }
 
@@ -53,8 +53,10 @@ export class EditarProgressoPage implements OnInit {
     }
 
     this.livro.progresso = paginasLidasNum / totalPaginas;
+    this.livro.paginasLidas = paginasLidasNum;
+    this.livro.totalPaginas = totalPaginas;
 
-    // Atualiza o livro no localStorage
+    // Atualiza no localStorage
     const livros = JSON.parse(localStorage.getItem('estante') || '[]');
     const index = livros.findIndex((l: any) => l.id === this.livro.id);
     if (index !== -1) {

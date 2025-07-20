@@ -9,11 +9,17 @@
 
 
 <ion-content class="ion-padding">
-  <ion-searchbar
+  <ion-input
+    type="text"
     [(ngModel)]="termoBusca"
-    (ionChange)="buscarLivros()"
-    placeholder="Digite o nome do livro ou autor">
-  </ion-searchbar>
+    (ionInput)="onInputChange(($event.target.value ?? '').toString())"
+    placeholder="Buscar livros..."
+    clearInput="true">
+  </ion-input>
+
+  <ion-text color="medium" *ngIf="resultados.length === 0 && termoBusca">
+    <p>Nenhum livro encontrado</p>
+  </ion-text>
 
   <ion-list *ngIf="resultados.length > 0">
     <ion-item *ngFor="let livro of resultados" [routerLink]="['/detalhes-livro', livro.id]">

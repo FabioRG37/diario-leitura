@@ -29,8 +29,11 @@
       </ion-card-content>
     </ion-card>
   
-    <ion-button color="primary" (click)="adicionarLivro()">
-      Adicionar à estante
+    <ion-button 
+      color="primary" 
+      [disabled]="jaNaEstante"
+      (click)="adicionarLivro()">
+      {{ jaNaEstante? 'Ja na estante' : 'Adicionar à estante' }}
     </ion-button>
   </ion-content>
 </div>

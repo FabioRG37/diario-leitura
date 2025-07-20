@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleBooksService } from 'src/app/services/google-books.service';
 import { AlertController, ToastController } from '@ionic/angular';
 
@@ -11,22 +11,33 @@ import { AlertController, ToastController } from '@ionic/angular';
 export class DetalhesLivroPage implements OnInit {
   livroId: string | null = null;
   livro: any = null;
+  jaNaEstante: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private bookService: GoogleBooksService,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.livroId = this.route.snapshot.paramMap.get('id');
+
     if (this.livroId) {
       this.bookService.buscarLivroPorId(this.livroId).subscribe({
-        next: (res) => this.livro = res,
+        next: (res) => {
+          this.livro = res;
+          this.verificarSeEstaNaEstante();
+        },
         error: (err) => console.error('Erro ao buscar livro:', err),
       });
     }
+  }
+
+  verificarSeEstaNaEstante() {
+    const estante = JSON.parse(localStorage.getItem('estante') || '[]');
+    this.jaNaEstante = estante.some((item: any) => item.id === this.livro?.id);
   }
 
   async adicionarLivro() {
@@ -88,12 +99,16 @@ export class DetalhesLivroPage implements OnInit {
     }
 
     localStorage.setItem('estante', JSON.stringify(estante));
+    this.jaNaEstante = true;
 
     this.toastCtrl.create({
       message: 'Livro salvo com sucesso!',
       duration: 2000,
       color: 'success'
-    }).then(toast => toast.present());
+    }).then(toast => {
+      toast.present()
+      this.router.navigate(['/estante']);
+    });
   }
 
 }

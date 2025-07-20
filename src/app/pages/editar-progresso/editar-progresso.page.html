@@ -15,13 +15,8 @@
 
   <ng-template #inputPaginas>
     <ion-item>
-      <ion-label position="stacked">Total de páginas (preencher manualmente)</ion-label>
-      <ion-input
-        type="number"
-        [(ngModel)]="totalPaginasManual"
-        placeholder="Ex: 300"
-        required
-      ></ion-input>
+      <ion-label position="stacked">Total de páginas</ion-label>
+      <ion-input [value]="totalPaginasDetectado" readonly></ion-input>
     </ion-item>
   </ng-template>
 
