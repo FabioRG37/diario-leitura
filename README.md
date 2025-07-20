@@ -30,7 +30,7 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
    ```bash
    git clone hhttps://github.com/FabioRG37/diario-leitura.git
    cd seu-repositorio
-````
+  ```
 
 2. Instale as dependências:
 
