@@ -4,3 +4,10 @@
 
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
+:root {
+    --ion-background-color: #F8F9FA;
+    --ion-text-color: #1E1E1E;
+    --ion-card-background: #FFF;
+    --ion-border-radius: 12px;
+    --ion-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}

@@ -14,13 +14,15 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 - 📉 **Exibição do progresso (%) de leitura** em cada livro da estante.
 - ❌ **Remoção de livros** da estante.
 - 🧠 **Persistência de dados no localStorage** (offline-friendly).
-- 🎨 Interface com animações de entrada para uma melhor experiência do usuário.
+- 📈 **Tela de estatísticas** com resumo numérico e gráfico de status de leitura.
+- 🎨 Interface moderna com **estilo clean**, ícones personalizados no menu lateral e **animações de transição suaves**.
 
 ## 🧱 Tecnologias Utilizadas
 
 - [Ionic Framework](https://ionicframework.com/)
 - [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
+- [Chart.js + ng2-charts](https://www.chartjs.org/)
 - HTML, SCSS, TypeScript
 - localStorage para persistência de dados
 
@@ -28,9 +30,9 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 
 1. Clone o repositório:
    ```bash
-   git clone hhttps://github.com/FabioRG37/diario-leitura.git
-   cd seu-repositorio
-  ```
+   git clone https://github.com/FabioRG37/diario-leitura.git
+   cd diario-leitura
+````
 
 2. Instale as dependências:
 
@@ -58,14 +60,16 @@ npx cap open android
 
 ## 🧩 Melhorias Futuras
 
-* [ ] Melhorias no visual da interface (estilização avançada)
+* [ ] Dark mode
 * [ ] Sincronização em nuvem (Firebase ou similar)
 * [ ] Compartilhamento de leituras com amigos
-* [ ] Dark mode
+* [ ] Notificações para lembrete de leitura
+* [ ] Acompanhamento de metas mensais
 
 ## 🧑‍💻 Autor
 
 Desenvolvido por **Fábio Gonçalves**
-Contato: [LinkedIn](https://www.linkedin.com/in/f%C3%A1bio-gon%C3%A7alves-509bb330/) | Email: [falsilgon@gmail.com](mailto:falsilgon@gmail.com)
+📨 [falsilgon@gmail.com](mailto:falsilgon@gmail.com)
+🔗 [LinkedIn](https://www.linkedin.com/in/f%C3%A1bio-gon%C3%A7alves-509bb330/)
 
 ---

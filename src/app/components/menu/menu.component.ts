@@ -16,4 +16,11 @@ export class MenuComponent {
       this.menuCtrl.close();
     });
   }
+
+  appPages = [
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Estante', url: '/estante', icon: 'book' },
+    { title: 'Pesquisar', url: '/busca', icon: 'search' },
+    { title: 'Estatísticas', url: '/estatisticas', icon: 'stats-chart' },
+  ];
 }

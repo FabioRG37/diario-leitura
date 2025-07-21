@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleBooksService } from 'src/app/services/google-books.service';
 import { AlertController, ToastController } from '@ionic/angular';
@@ -7,6 +8,17 @@ import { AlertController, ToastController } from '@ionic/angular';
   selector: 'app-detalhes-livro',
   templateUrl: './detalhes-livro.page.html',
   styleUrls: ['./detalhes-livro.page.css'],
+  animations: [
+    trigger('fadePage', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class DetalhesLivroPage implements OnInit {
   livroId: string | null = null;

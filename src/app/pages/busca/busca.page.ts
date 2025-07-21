@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { GoogleBooksService } from 'src/app/services/google-books.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -7,6 +8,17 @@ import { Subject } from 'rxjs';
   selector: 'app-busca',
   templateUrl: './busca.page.html',
   styleUrls: ['./busca.page.css'],
+  animations: [
+    trigger('fadePage', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class BuscaPage {
   buscaSubject = new Subject<string>();

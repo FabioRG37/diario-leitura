@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding ion-justify-content-center">
+<ion-content [@fadePage] class="ion-padding ion-justify-content-center">
   <ion-item *ngIf="livro?.volumeInfo?.pageCount; else inputPaginas">
     <ion-label position="stacked">Total de páginas</ion-label>
     <ion-input [value]="livro.volumeInfo.pageCount" readonly></ion-input>

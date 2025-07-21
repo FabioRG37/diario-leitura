@@ -3,24 +3,48 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Diário de leitura</ion-title>
+    <ion-title>Diário de Leitura</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [@fadePage] class="ion-padding">
+  <div class="home-container">
+    <ion-card class="welcome-card" [@fadeIn]>
+      <ion-card-header>
+        <ion-card-title>📚 Bem-vindo!</ion-card-title>
+        <ion-card-subtitle>ao seu Diário de Leitura</ion-card-subtitle>
+      </ion-card-header>
 
-<ion-content class="ion-padding">
-  <h2>📚 Bem-vindo ao seu Diário de Leitura!</h2>
-  <p>Pesquise livros, acompanhe suas leituras e registre seu progresso.</p>
+      <ion-card-content>
+        <p>Pesquise livros, acompanhe suas leituras e registre seu progresso de forma simples e agradável.</p>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-button color="primary" routerLink="/busca">
-        Buscar livros
-      </ion-button>
-    
-      <ion-button color="secondary" routerLink="/estante">
-        Ver minha estante
-      </ion-button>
-    </ion-row>
-  </ion-grid>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center ion-padding-top" >
+            <ion-col size="12" size-md="6">
+              <ion-button expand="block" color="primary" routerLink="/busca">
+                <ion-icon slot="start" name="search-outline"></ion-icon>
+                Buscar livros
+              </ion-button>
+            </ion-col>
+
+            <ion-col size="12" size-md="6">
+              <ion-button expand="block" color="secondary" routerLink="/estante">
+                <ion-icon slot="start" name="book-outline"></ion-icon>
+                Ver minha estante
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-justify-content-center ion-padding-top">
+            <ion-col size="12" size-md="6">
+              <ion-button expand="block" color="secondary" routerLink="/estatisticas">
+                <ion-icon slot="start" name="stats-chart-outline"></ion-icon>
+                Estatísticas
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
