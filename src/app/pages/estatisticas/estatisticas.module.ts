@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgChartsModule } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,7 +14,8 @@ import { EstatisticasPage } from './estatisticas.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EstatisticasPageRoutingModule
+    EstatisticasPageRoutingModule,
+    NgChartsModule
   ],
   declarations: [EstatisticasPage]
 })
