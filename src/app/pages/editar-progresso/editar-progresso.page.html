@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/estante"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Editar Progresso</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-toolbar titulo="Editar Progresso"></app-toolbar>
 
 <ion-content [@fadePage] class="ion-padding ion-justify-content-center">
   <ion-item *ngIf="livro?.volumeInfo?.pageCount; else inputPaginas">

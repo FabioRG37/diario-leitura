@@ -60,7 +60,7 @@ npx cap open android
 
 ## 🧩 Melhorias Futuras
 
-* [ ] Dark mode
+* [x] Dark mode
 * [ ] Sincronização em nuvem (Firebase ou similar)
 * [ ] Compartilhamento de leituras com amigos
 * [ ] Notificações para lembrete de leitura

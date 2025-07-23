@@ -15,7 +15,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -25,6 +26,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     FormsModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot()
+  ],
+  exports: [
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
