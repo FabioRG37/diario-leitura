@@ -67,8 +67,14 @@ export class EstantePage implements OnInit {
   }
 
   removerLivro(event: Event, id: string) {
-    event.stopPropagation(); // Impede a navegação
-    this.livros = this.livros.filter(livro => livro.id !== id);
-    localStorage.setItem('estante', JSON.stringify(this.livros));
+    let conf = confirm("Deseja realmente excluir este livro?")
+    if(conf) {
+      event.stopPropagation(); // Impede a navegação
+      this.livros = this.livros.filter(livro => livro.id !== id);
+      localStorage.setItem('estante', JSON.stringify(this.livros));
+    } else {
+      event.stopPropagation();
+      return
+    }
   }
 }

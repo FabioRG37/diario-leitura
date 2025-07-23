@@ -43,7 +43,6 @@ export class EditarProgressoPage implements OnInit {
       this.totalPaginasDetectado = total;
       this.paginasLidas = this.livro.paginasLidas ?? 0;
     }
-    console.log("Livro carregado:", this.livro);
   }
 
   async salvarProgresso() {
@@ -71,7 +70,13 @@ export class EditarProgressoPage implements OnInit {
     // Atualiza no localStorage
     const livros = JSON.parse(localStorage.getItem('estante') || '[]');
     const index = livros.findIndex((l: any) => l.id === this.livro.id);
+
+
     if (index !== -1) {
+      if(paginasLidasNum == totalPaginas) {
+        this.livro.status = 'lido'
+        alert("Parabéns! Você concluiu " + this.livro.volumeInfo.title)
+      }
       livros[index] = this.livro;
       localStorage.setItem('estante', JSON.stringify(livros));
     }

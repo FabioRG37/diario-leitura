@@ -8,6 +8,12 @@ import { Storage } from '@ionic/storage-angular';
   templateUrl: './estatisticas.page.html',
   styleUrls: ['./estatisticas.page.css'],
   animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('300ms ease-in', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
       trigger('fadePage', [
         transition(':enter', [
           style({ opacity: 0 }),
@@ -25,8 +31,9 @@ export class EstatisticasPage implements OnInit {
   livrosPlanejados = 0;
   livrosLendo = 0;
   paginasLidas = 0;
-  tempoEstimado = 0;
+  tempoEstimado = "";
   progressoMedio = 0;
+  minutos = 0;
 
   pieChartLabels: string[] = ['Lidos', 'Lendo', 'Quero Ler'];
   
@@ -64,6 +71,9 @@ export class EstatisticasPage implements OnInit {
       if (livro.status == 'lido') {
         paginasLidas = livro.volumeInfo?.pageCount;
       }
+      if (livro.status == 'lendo') {
+        paginasLidas = livro.paginasLidas;
+      }
       const total = livro.totalPaginas || livro.volumeInfo?.pageCount || 0;
 
       totalPaginasLidas += paginasLidas;
@@ -71,7 +81,8 @@ export class EstatisticasPage implements OnInit {
     });
 
     this.paginasLidas = totalPaginasLidas;
-    this.tempoEstimado = Math.round(totalPaginasLidas * 1.65); // 1 min por página
+    this.tempoEstimado = this.minutosParaDiasEHoras(Math.round(totalPaginasLidas * 1.65));
+    // this.tempoEstimado = Math.round(totalPaginasLidas * 1.65); // 1 min por página
     this.progressoMedio = totalPaginasPossiveis
       ? Math.round((totalPaginasLidas / totalPaginasPossiveis) * 100)
       : 0;
@@ -93,5 +104,12 @@ export class EstatisticasPage implements OnInit {
         hoverBackgroundColor: ['#45a049', '#FFC107', '#1976d2']
       }]
     };
+  }
+
+  minutosParaDiasEHoras(minutos: number) {
+    const dias = Math.floor(minutos / (60 * 24))
+    const horas = Math.floor((minutos % (60 * 24)) / 60);
+    const minutosRestantes = minutos % 60;
+    return `${dias} dias ${horas} h ${minutosRestantes} min`
   }
 }

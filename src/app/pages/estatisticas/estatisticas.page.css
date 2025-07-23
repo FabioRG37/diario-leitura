@@ -1,3 +1,20 @@
 :host {
   display: block;
+  padding-bottom: 64px;
+}
+
+ion-card {
+  padding: 6%;
+}
+
+ion-card-title {
+  text-align: center;
+}
+
+ion-card-content {
+  margin: 0 auto;
+  text-align: center;
+  font: bold;
+  font-size: xx-large;
+  font-weight: 900;
 }
