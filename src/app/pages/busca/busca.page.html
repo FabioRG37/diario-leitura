@@ -1,13 +1,15 @@
 <app-toolbar titulo="Buscar Livro"></app-toolbar>
 
 <ion-content [@fadePage] class="ion-padding">
-  <ion-input
-    type="text"
-    [(ngModel)]="termoBusca"
-    (ionInput)="onInputChange(($event.target.value ?? '').toString())"
-    placeholder="Buscar livros..."
-    clearInput="true">
-  </ion-input>
+  <div class="busca-input">
+    <ion-input
+      type="text"
+      [(ngModel)]="termoBusca"
+      (ionInput)="onInputChange(($event.target.value ?? '').toString())"
+      placeholder="Buscar livros..."
+      clearInput="true">
+    </ion-input>
+  </div>
 
   <ion-text color="medium" *ngIf="resultados.length === 0 && termoBusca">
     <p>Nenhum livro encontrado</p>

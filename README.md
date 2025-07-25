@@ -15,7 +15,12 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 - ❌ **Remoção de livros** da estante.
 - 🧠 **Persistência de dados no localStorage** (offline-friendly).
 - 📈 **Tela de estatísticas** com resumo numérico e gráfico de status de leitura.
-- 🎨 Interface moderna com **estilo clean**, ícones personalizados no menu lateral e **animações de transição suaves**.
+- 🏆 **Sistema de conquistas**: desbloqueie conquistas ao atingir metas como:
+  - Primeira página lida
+  - 100, 500, 1000 páginas lidas
+  - 3, 5, 10 livros finalizados
+- 📦 **Detecção automática de conquistas** com base no progresso de leitura e status dos livros.
+- 🎨 Interface moderna com **estilo clean**, **menu lateral com ícones** e **animações suaves** de transição.
 
 ## 🧱 Tecnologias Utilizadas
 
@@ -23,6 +28,7 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 - [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
 - [Chart.js + ng2-charts](https://www.chartjs.org/)
+- [@angular/animations](https://angular.io/guide/animations)
 - HTML, SCSS, TypeScript
 - localStorage para persistência de dados
 
@@ -50,17 +56,18 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 
 Você poderá gerar o APK para Android com o Capacitor:
 
-```bash
-ionic build
-npx cap add android
-npx cap open android
-```
+   ```bash
+   ionic build
+   npx cap add android
+   npx cap open android
+   ```
 
 > Em breve será feita a configuração completa de build para Android.
 
 ## 🧩 Melhorias Futuras
 
 * [x] Dark mode
+* [x] Sistema de conquistas
 * [ ] Sincronização em nuvem (Firebase ou similar)
 * [ ] Compartilhamento de leituras com amigos
 * [ ] Notificações para lembrete de leitura
@@ -72,4 +79,4 @@ Desenvolvido por **Fábio Gonçalves**
 📨 [falsilgon@gmail.com](mailto:falsilgon@gmail.com)
 🔗 [LinkedIn](https://www.linkedin.com/in/f%C3%A1bio-gon%C3%A7alves-509bb330/)
 
----
+```

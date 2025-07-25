@@ -15,7 +15,10 @@
         <ion-card class="livro-card" (click)="abrirDetalhes(livro.id)">
 
           <ion-row class="ion-justify-content-center">
-            <img [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/sem-capa.png'" alt="Capa do Livro" />
+            <ion-img 
+              [src]="livro.volumeInfo.imageLinks?.thumbnail || 'assets/img/no_image_available.jpg'" 
+              alt="Capa do Livro"
+              class="img-livro" />
           </ion-row>
 
           <ion-card-header>
@@ -27,7 +30,19 @@
 
             <ion-row class="ion-justify-content-between ion-align-items-center">
               <ion-badge color="medium">Status: {{ livro.status }}</ion-badge>
+              <div *ngIf="livro.status === 'quero-ler'">
+                <ion-button 
+                  fill="outline" 
+                  color="warning" 
+                  size="small" 
+                  title="Mudar para lendo"
+                  (click)="mudarParaLendo($event, livro.id)">
+                  <ion-icon name="glasses-outline" slot="icon-only"></ion-icon>
+                </ion-button>
+              </div>
+              <div style="width: 32%;"></div>
               <ion-button 
+                title="Remover livro"
                 fill="outline" 
                 color="danger" 
                 size="small" 

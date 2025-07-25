@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+import { ConquistaService } from 'src/app/services/conquista.service';
 
 @Component({
   selector: 'app-editar-progresso',
@@ -28,7 +29,8 @@ export class EditarProgressoPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private conquistaService: ConquistaService
   ) {}
 
   async ngOnInit() {
@@ -71,7 +73,6 @@ export class EditarProgressoPage implements OnInit {
     const livros = JSON.parse(localStorage.getItem('estante') || '[]');
     const index = livros.findIndex((l: any) => l.id === this.livro.id);
 
-
     if (index !== -1) {
       if(paginasLidasNum == totalPaginas) {
         this.livro.status = 'lido'
@@ -79,6 +80,9 @@ export class EditarProgressoPage implements OnInit {
       }
       livros[index] = this.livro;
       localStorage.setItem('estante', JSON.stringify(livros));
+      this.conquistaService.marcarConquistasDeLeitura(paginasLidasNum);
+      const livrosLidos = livros.filter((l: { status: string; }) => l.status === 'lido').lenght;
+      this.conquistaService.marcarConquistasDeLivrosFinalizados(livros);
     }
 
     this.router.navigate(['/estante']);

@@ -2,3 +2,11 @@
 ion-card-title {
     color: var(--ion-text-color) !important;
 }
+
+ion-icon {
+    color: var(--ion-icon-color);
+}
+
+ion-segment-button {
+    color: var(--ion-segment-button);
+}

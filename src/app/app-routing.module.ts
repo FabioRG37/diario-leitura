@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'estante', loadChildren: () => import('./pages/estante/estante.module').then(m => m.EstantePageModule) },
   { path: 'estatisticas', loadChildren: () => import('./pages/estatisticas/estatisticas.module').then(m => m.EstatisticasPageModule) },
   { path: 'editar-progresso/:id', loadChildren: () => import('./pages/editar-progresso/editar-progresso.module').then(m => m.EditarProgressoPageModule) },
+  { path: 'conquistas', loadChildren: () => import('./pages/conquistas/conquistas.module').then(m => m.ConquistasPageModule) },
 ];
 
 @NgModule({

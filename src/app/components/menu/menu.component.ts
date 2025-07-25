@@ -22,5 +22,6 @@ export class MenuComponent {
     { title: 'Estante', url: '/estante', icon: 'book' },
     { title: 'Pesquisar', url: '/busca', icon: 'search' },
     { title: 'Estatísticas', url: '/estatisticas', icon: 'stats-chart' },
+    { title: 'Conquistas', url: '/conquistas', icon: 'trophy-outline'},
   ];
 }

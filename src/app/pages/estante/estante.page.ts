@@ -38,8 +38,6 @@ export class EstantePage implements OnInit {
     const dados = localStorage.getItem('estante');
     const livrosRaw = dados ? JSON.parse(dados) : [];
 
-    console.log("Livros carregados:", livrosRaw);
-
     this.livros = livrosRaw.map((livro: any) => {
       const totalPaginas = livro.totalPaginas ?? livro.volumeInfo?.pageCount ?? 0;
       const paginasLidas = Number(livro.paginasLidas ?? 0);
@@ -64,6 +62,18 @@ export class EstantePage implements OnInit {
   get livrosFiltrados() {
     if (this.filtro === 'todos') return this.livros;
     return this.livros.filter((l) => l.status === this.filtro);
+  }
+
+  mudarParaLendo(event: Event, id: string) {
+    event.stopPropagation();
+    const conf = confirm("Mudar para lendo?")
+    if (!conf) return;
+    const index = this.livros.findIndex((l: any) => l.id === id);
+    if (index !== -1) {
+      this.livros[index].status = 'lendo';
+      localStorage.setItem('estante', JSON.stringify(this.livros))
+    }
+    this.router.navigate(['/estante']);
   }
 
   removerLivro(event: Event, id: string) {

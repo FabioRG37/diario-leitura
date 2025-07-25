@@ -6,6 +6,13 @@
 .livro-card {
   padding-top: 16px;
 }
+
+.img-livro {
+  width: 128px;
+  height: 184px;
+  object-fit: cover;
+}
+
 .texto-central {
   text-align: center;
   margin-top: 2rem;
