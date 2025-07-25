@@ -1,12 +1,37 @@
+.reset-btn {
+  --border-color: var(--ion-color-danger);
+  --color: var(--ion-color-danger);
+  --background: transparent;
+  border-radius: 16px;
+  border-width: 1px;
+}
+
 ion-card {
+  min-height: 16vh;
   transition: all 0.3s ease-in-out;
   opacity: 0.5;
   filter: grayscale(100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   border: 1px solid #ddd;
-  background-color: #f8f8f8;
+  background-color: var(--ion-card-background, #f8f8f8);
+}
 
+ion-card.conquistada {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 4px 16px rgba(0, 128, 0, 0.15);
+  border: 1px solid #cce5cc;
+}
+
+ion-card.nao-conquistada {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-card.card-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,14 +39,6 @@ ion-card {
   text-align: center;
   height: 100%;
   padding: 16px;
-}
-
-ion-card.conquistada {
-  opacity: 1;
-  filter: none;
-  background-color: #ffffff;
-  box-shadow: 0 4px 16px rgba(0, 128, 0, 0.15);
-  border: 1px solid #cce5cc;
 }
 
 ion-card-title {
@@ -44,3 +61,4 @@ ion-card-content {
   font-size: 0.95rem;
   color: #555;
 }
+

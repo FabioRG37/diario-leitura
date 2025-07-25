@@ -3,6 +3,18 @@
 <ion-content [fullscreen]="true" class="ion-padding" [@fadePage]>
   <ion-grid>
     <ion-row>
+      <ion-col>
+        <ion-button 
+          fill="outline"
+          color="danger" 
+          class="ion-margin-top reset-btn" 
+          (click)="resetarConquistas()"
+          *ngIf="haConquistasMarcadas">
+          Resetar Conquistas
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col  
         size="12" 
         sizeMd="6" 
@@ -13,7 +25,7 @@
           class="ion-align-items-center ion-justify-content-center" 
           [class.conquistada]="conquista.conquistada" 
           [class.nao-conquistada]="!conquista.conquistada">
-          <ion-card-header>
+          <ion-card-header class="ion-justify-content-center ion-align-items-center">
             <ion-card-title>
               <ion-icon
                 [name]="conquista.conquistada ? 'trophy' : 'lock-closed'"

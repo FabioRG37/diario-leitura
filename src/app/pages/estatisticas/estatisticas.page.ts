@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ConquistaService } from 'src/app/services/conquista.service';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -34,6 +35,9 @@ export class EstatisticasPage implements OnInit {
   tempoEstimado = "";
   progressoMedio = 0;
   minutos = 0;
+  totalConquistas = 0;
+  conquistasAlcancadas = 0;
+  progressoConquistas = 0;
 
   pieChartLabels: string[] = ['Lidos', 'Lendo', 'Quero Ler'];
   
@@ -47,7 +51,10 @@ export class EstatisticasPage implements OnInit {
     ],
   };
 
-  constructor(private storage: Storage) {}
+  constructor(
+    private storage: Storage,
+    private conquistaService: ConquistaService
+  ) {}
 
   async ngOnInit() {
     this.carregarEstatisticas();
@@ -65,6 +72,14 @@ export class EstatisticasPage implements OnInit {
 
     let totalPaginasLidas = 0;
     let totalPaginasPossiveis = 0;
+    
+    // Conquistas
+    const conquistas = this.conquistaService.getConquistas();
+    this.totalConquistas = conquistas.length;
+    this.conquistasAlcancadas = conquistas.filter(c => c.conquistada).length;
+    this.progressoConquistas = this.totalConquistas
+      ? Math.round((this.conquistasAlcancadas / this.totalConquistas) * 100)
+      : 0;
 
     livros.forEach((livro: any) => {
       let paginasLidas = 0;

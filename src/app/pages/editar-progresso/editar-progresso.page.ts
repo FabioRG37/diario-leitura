@@ -80,9 +80,7 @@ export class EditarProgressoPage implements OnInit {
       }
       livros[index] = this.livro;
       localStorage.setItem('estante', JSON.stringify(livros));
-      this.conquistaService.marcarConquistasDeLeitura(paginasLidasNum);
-      const livrosLidos = livros.filter((l: { status: string; }) => l.status === 'lido').lenght;
-      this.conquistaService.marcarConquistasDeLivrosFinalizados(livros);
+      this.conquistaService.verificarConquistas(livros, paginasLidasNum);
     }
 
     this.router.navigate(['/estante']);

@@ -2,6 +2,12 @@ import { Conquista } from '../models/conquista.model';
 
 export const CONQUISTAS_PADRAO: Conquista[] = [
   {
+    id: 'primeiro-livro',
+    titulo: 'Primeiro Livro',
+    descricao: 'Começou a ler o primeiro livro',
+    conquistada: false
+  },
+  {
     id: 'primeira-pagina',
     titulo: 'Primeira Página',
     descricao: 'Ler a primeira página!',
@@ -89,6 +95,12 @@ export const CONQUISTAS_PADRAO: Conquista[] = [
     id: 'meta-concluida',
     titulo: 'Meta Concluida',
     descricao: 'Atingir uma meta de leitura definida anteriormente',
+    conquistada: false
+  },
+  {
+    id: 'leitor-senior',
+    titulo: "Leitor Sênior",
+    descricao: "Conseguir todas as conquistas",
     conquistada: false
   }
 ];
