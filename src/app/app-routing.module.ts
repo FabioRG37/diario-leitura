@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'estatisticas', loadChildren: () => import('./pages/estatisticas/estatisticas.module').then(m => m.EstatisticasPageModule) },
   { path: 'editar-progresso/:id', loadChildren: () => import('./pages/editar-progresso/editar-progresso.module').then(m => m.EditarProgressoPageModule) },
   { path: 'conquistas', loadChildren: () => import('./pages/conquistas/conquistas.module').then(m => m.ConquistasPageModule) },
+  { path: 'meta', loadChildren: () => import('./pages/meta/meta.module').then(m => m.MetaPageModule) },
 ];
 
 @NgModule({

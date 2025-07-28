@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Conquista } from '../shared/models/conquista.model';
 import { CONQUISTAS_PADRAO } from '../shared/data/conquistas';
+import { ToastController } from '@ionic/angular';
 
 const STORAGE_KEY = 'conquistas-usuario';
 
@@ -12,7 +13,31 @@ export class ConquistaService {
   private storageInicializado = false;
   private conquistas: Conquista[] = [];
 
-  constructor(private storage: Storage) {}
+  constructor(
+    private storage: Storage,
+    private toastController: ToastController
+  ) {}
+
+  public async marcarComoConquistada(id: string) {
+    const conquista = this.conquistas.find(c => c.id === id);
+    if (conquista && !conquista.conquistada) {
+      conquista.conquistada = true;
+      conquista.dataConquista = new Date().toISOString();
+      await this.salvarConquistas();
+      await this.mostrarToastConquista(conquista.titulo);
+    }
+  }
+
+  private async mostrarToastConquista(titulo: string) {
+    const toast = await this.toastController.create({
+      message: `🎉 Conquista desbloqueada: ${titulo}!`,
+      duration: 3000,
+      color: 'success',
+      position: 'top'
+    });
+    toast.present();
+  }
+
 
   public async init(): Promise<void> {
     if (!this.storageInicializado) {
@@ -34,15 +59,6 @@ export class ConquistaService {
 
   public getConquistas(): Conquista[] {
     return this.conquistas;
-  }
-
-  public async marcarComoConquistada(id: string) {
-    const conquista = this.conquistas.find(c => c.id === id);
-    if (conquista && !conquista.conquistada) {
-      conquista.conquistada = true;
-      conquista.dataConquista = new Date().toISOString();
-      await this.salvarConquistas();
-    }
   }
 
   public resetarConquistas() {

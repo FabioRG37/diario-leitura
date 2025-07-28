@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Criar Nova Meta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="fechar()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="criarMeta()" #form="ngForm">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" [(ngModel)]="titulo" name="titulo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-textarea [(ngModel)]="descricao" name="descricao"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="tipo" name="tipo" required (ionChange)="onTipoChange()">
+        <ion-select-option value="paginas">Páginas</ion-select-option>
+        <ion-select-option value="livro">Livro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="tipo === 'paginas'">
+      <ion-label position="floating">Objetivo de Páginas</ion-label>
+      <ion-input type="number" [(ngModel)]="objetivoPaginas" name="objetivoPaginas" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Livro</ion-label>
+      <ion-select 
+        [(ngModel)]="livroSelecionado" 
+        name="livroSelecionado"
+        interface="alert" 
+        placeholder="Selecione um livro" 
+        required>
+      <ion-select-option *ngFor="let livro of livros" [value]="livro.id">
+        {{ livro.volumeInfo.title }}
+      </ion-select-option>
+    </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-input (click)="openDateModal()" [value]="dataLimite | date: 'dd/MM/yyyy'" placeholder="Selecione uma data" readonly></ion-input>
+    </ion-item>
+    <ion-modal [keepContentsMounted]="true" [isOpen]="isModalOpen">
+         <ng-template>
+            <ion-header>
+            <ion-toolbar>
+                <ion-title>Selecione a Data</ion-title>
+                <ion-buttons slot="end">
+                <ion-button (click)="cancelDateSelection()">Cancelar</ion-button>
+                <ion-button (click)="confirmDateSelection()">Confirmar</ion-button>
+                </ion-buttons>
+            </ion-toolbar>
+            </ion-header>
+            <ion-content>
+            <ion-datetime 
+                id="dataLimite"
+                [(ngModel)]="dataLimite"
+                presentation="date"
+                locale="pt-BR"
+                name="dataLimite">
+            </ion-datetime>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+    <div class="submit-meta">
+        <ion-button type="submit" [disabled]="form.invalid">Salvar Meta</ion-button>
+    </div>
+  </form>
+</ion-content>
