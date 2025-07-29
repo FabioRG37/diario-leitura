@@ -52,22 +52,24 @@
     <ion-modal [keepContentsMounted]="true" [isOpen]="isModalOpen">
          <ng-template>
             <ion-header>
-            <ion-toolbar>
-                <ion-title>Selecione a Data</ion-title>
-                <ion-buttons slot="end">
-                <ion-button (click)="cancelDateSelection()">Cancelar</ion-button>
-                <ion-button (click)="confirmDateSelection()">Confirmar</ion-button>
-                </ion-buttons>
-            </ion-toolbar>
+              <ion-toolbar>
+                  <ion-title>Selecione a Data</ion-title>
+                  <ion-buttons slot="end">
+                  <ion-button (click)="cancelDateSelection()">Cancelar</ion-button>
+                  <ion-button (click)="confirmDateSelection()">Confirmar</ion-button>
+                  </ion-buttons>
+              </ion-toolbar>
             </ion-header>
             <ion-content>
-            <ion-datetime 
-                id="dataLimite"
-                [(ngModel)]="dataLimite"
-                presentation="date"
-                locale="pt-BR"
-                name="dataLimite">
-            </ion-datetime>
+              <div class="datetime-wrapper">
+                <ion-datetime 
+                    id="dataLimite"
+                    [(ngModel)]="dataLimite"
+                    presentation="date"
+                    locale="pt-BR"
+                    name="dataLimite">
+                </ion-datetime>
+              </div>
             </ion-content>
         </ng-template>
     </ion-modal>

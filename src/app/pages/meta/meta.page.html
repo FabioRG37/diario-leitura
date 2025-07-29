@@ -13,18 +13,28 @@
   </ion-segment>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let meta of metasFiltradas()">
-      <ion-item>
-        <ion-label>
-          <h2>{{ meta.titulo }}</h2>
-          <p>{{ meta.descricao }}</p>
-          <p>Páginas lidas: {{ meta.paginasLidas }}/{{ meta.objetivoPaginas }}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="editarMeta(meta)">Editar</ion-item-option>
-        <ion-item-option color="danger" (click)="deletarMeta(meta.id)">Excluir</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    
+    <ion-item *ngFor="let meta of metasFiltradas()" lines="full">
+      <ion-label>
+        <h2>{{ meta.titulo }}</h2>
+        <p>{{ meta.descricao }}</p>
+        <p *ngIf="meta.tipo === 'paginas'">
+          Páginas lidas: {{ meta.paginasLidas }}/{{ meta.objetivoPaginas }}
+        </p>
+        <p *ngIf="meta.tipo === 'livro'">
+          Meta vinculada ao livro
+        </p>
+      </ion-label>
+
+      <ion-buttons side="end">
+        <ion-button color="primary" fill="clear" (click)="editarMeta(meta)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="deletarMeta(meta.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
   </ion-list>
 </ion-content>

@@ -50,6 +50,14 @@ export class MetaService {
     this.salvarMetas();
   }
 
+  public atualizarMeta(metaAtualizada: Meta) {
+    const index = this.metas.findIndex(m => m.id === metaAtualizada.id);
+    if(index > -1) {
+      this.metas[index] = metaAtualizada;
+      this.salvarMetas();
+    }
+  }
+
   public marcarComoConcluida(id: string): void {
     const meta = this.metas.find(m => m.id === id);
     if (meta && !meta.concluida) {

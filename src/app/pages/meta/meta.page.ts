@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { CriarMetaModalComponent } from 'src/app/components/modals/criar-meta-modal/criar-meta-modal.component';
 import { MetaService } from 'src/app/services/meta.service';
 import { Meta } from 'src/app/shared/models/meta.model'
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-meta',
@@ -15,12 +16,14 @@ export class MetaPage {
 
   constructor(
     private modalCtrl: ModalController,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private toastCtrl: ToastController
   ) {}
 
   ionViewWillEnter() {
     // this.metas = this.metaService.listarMetas();
     this.metas = this.metaService.getMetas();
+    console.log("Metas: ", this.metas)
   }
 
   async abrirModalCriarMeta() {
@@ -37,18 +40,41 @@ export class MetaPage {
     await modal.present();
   }
 
+  async mostrarToast(mensagem: string) {
+    const toast = await this.toastCtrl.create({
+      message: mensagem,
+      duration: 2000,
+      color: 'success',
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
   metasFiltradas(): Meta[] {
     return this.metas.filter(m => this.filtro === 'ativas' ? !m.concluida : m.concluida);
   }
 
-  editarMeta(meta: Meta) {
-    // Lógica para editar meta
-    alert('Editar ainda não implementado');
+  async editarMeta(meta: Meta) {
+    const modal = await this.modalCtrl.create({
+      component: CriarMetaModalComponent,
+      componentProps: { metaExistente: meta}
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      this.metas = this.metaService.listarMetas();
+      this.mostrarToast("Meta atualizada com sucesso!");
+    }
   }
 
   deletarMeta(id: string) {
-    this.metaService.removerMeta(id);
-    this.metas = this.metaService.listarMetas();
+    const conf = confirm("Deseja realmente remover esta meta?");
+    if (conf) {
+      this.metaService.removerMeta(id);
+      this.metas = this.metaService.listarMetas();
+    }
   }
 
   carregarMetas() {

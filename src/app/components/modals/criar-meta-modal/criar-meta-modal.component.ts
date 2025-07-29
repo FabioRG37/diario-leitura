@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { MetaService } from 'src/app/services/meta.service';
@@ -10,6 +10,8 @@ import { Meta } from 'src/app/shared/models/meta.model';
   styleUrls: ['./criar-meta-modal.component.css'],
 })
 export class CriarMetaModalComponent implements OnInit {
+  @Input() metaExistente?: Meta;
+  
   titulo: string = '';
   descricao: string = '';
   tipo: string = '';
@@ -19,17 +21,29 @@ export class CriarMetaModalComponent implements OnInit {
   livroSelecionado: string = '';
   isModalOpen = false;
 
-
   constructor(
     private modalCtrl: ModalController,
     private metaService: MetaService,
     private localStorage: Storage
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.inicializarFormulario();
+  }
+  
+  async inicializarFormulario() {
     await this.localStorage.create();
     const livrosSalvos = await JSON.parse(localStorage.getItem('estante') || '[]');
     this.livros = livrosSalvos || [];
+
+    if (this.metaExistente) {
+      this.titulo = this.metaExistente.titulo;
+      this.descricao = this.metaExistente.descricao;
+      this.tipo = this.metaExistente.tipo;
+      this.objetivoPaginas = this.metaExistente.objetivoPaginas;
+      this.livroSelecionado = String(this.metaExistente.alvo);
+      this.dataLimite = this.metaExistente.dataLimite ? new Date(this.metaExistente.dataLimite) : null;
+    }
   }
   
   onTipoChange() {
@@ -57,19 +71,24 @@ export class CriarMetaModalComponent implements OnInit {
   }
 
   async salvar() {
-
-    await this.metaService.adicionarMeta({
-      id: Date.now().toString(),
+    const metaAtualizada: Meta = {
+      id: this.metaExistente?.id ?? Date.now().toString(),
       titulo: this.titulo,
       descricao: this.descricao,
       tipo: this.tipo,
-      paginasLidas: 0,
+      paginasLidas: this.metaExistente?.paginasLidas ?? 0,
       objetivoPaginas: this.objetivoPaginas,
       alvo: this.livroSelecionado,
       dataLimite: this.dataLimite ?? undefined,
-      concluida: false,
-      dataConclusao: ''
-    });
+      concluida: this.metaExistente?.concluida ?? false,
+      dataConclusao: this.metaExistente?.dataConclusao ?? ''
+    };
+
+    if (this.metaExistente) {
+      await this.metaService.atualizarMeta(metaAtualizada);
+    } else {
+      await this.metaService.adicionarMeta(metaAtualizada);
+    }
 
     this.modalCtrl.dismiss('salvou');
   }
