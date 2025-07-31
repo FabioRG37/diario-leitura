@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDGYCPrGysXZ9Eg0VaTzqiJ6rzj1rcNdsU",
+    apiKey: "",
     authDomain: "diario-leitura-c9536.firebaseapp.com",
     projectId: "diario-leitura-c9536",
     storageBucket: "diario-leitura-c9536.firebasestorage.app",
