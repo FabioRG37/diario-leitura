@@ -22,7 +22,14 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": [
+      "node_module/@types",
+      "node_module/chart.js/types"
+    ],
+    "paths": {
+      "chart.js/dist/types/utils": ["node_module/chart.js/types/utils"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

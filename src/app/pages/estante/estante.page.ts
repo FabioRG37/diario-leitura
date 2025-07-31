@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { LivroService } from 'src/app/services/livro.service';
 
 @Component({
   selector: 'app-estante',
@@ -28,10 +29,16 @@ export class EstantePage implements OnInit {
   livros: any[] = [];
   filtro = 'todos';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private livroService: LivroService
+  ) { }
 
   ngOnInit() {
     this.carregarLivros();
+    this.livroService.getLivros().subscribe(livros => {
+      this.livros = livros;
+    })
   }
 
   carregarLivros() {
