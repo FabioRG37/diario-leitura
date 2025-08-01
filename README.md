@@ -25,8 +25,8 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
   - Login de usuário
   - Redirecionamento inteligente
   - Proteção de rotas com `AuthGuard`
-- 👤 Exibição de **email/nome do usuário logado** (em breve)
-- 🚪 Botão de **logout** com redirecionamento para tela de login (em breve)
+- 👤 Exibição de **email/nome do usuário logado**
+- 🚪 Botão de **logout** com redirecionamento para tela de login
 - 🎨 Interface moderna com **estilo clean**, **menu lateral com ícones** e **animações suaves** de transição.
 
 ## 🧱 Tecnologias Utilizadas
@@ -79,7 +79,7 @@ Você poderá gerar o APK para Android com o Capacitor:
 * [x] Login com Firebase
 * [x] Criação de conta com Firebase
 * [x] Proteção de rotas (`AuthGuard`)
-* [ ] Logout com redirecionamento
+* [x] Logout com redirecionamento
 * [x] Exibir nome/email do usuário logado
 * [ ] Mensagens de erro personalizadas
 * [ ] Recuperação de senha
