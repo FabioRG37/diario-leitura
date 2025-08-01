@@ -20,6 +20,13 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
   - 100, 500, 1000 páginas lidas
   - 3, 5, 10 livros finalizados
 - 📦 **Detecção automática de conquistas** com base no progresso de leitura e status dos livros.
+- 🔐 **Autenticação com Firebase Authentication**:
+  - Criação de conta
+  - Login de usuário
+  - Redirecionamento inteligente
+  - Proteção de rotas com `AuthGuard`
+- 👤 Exibição de **email/nome do usuário logado** (em breve)
+- 🚪 Botão de **logout** com redirecionamento para tela de login (em breve)
 - 🎨 Interface moderna com **estilo clean**, **menu lateral com ícones** e **animações suaves** de transição.
 
 ## 🧱 Tecnologias Utilizadas
@@ -27,10 +34,11 @@ Aplicativo mobile desenvolvido com **Ionic + Angular** para organizar e acompanh
 - [Ionic Framework](https://ionicframework.com/)
 - [Angular](https://angular.io/)
 - [Google Books API](https://developers.google.com/books)
+- [Firebase Authentication](https://firebase.google.com/)
 - [Chart.js + ng2-charts](https://www.chartjs.org/)
 - [@angular/animations](https://angular.io/guide/animations)
 - HTML, SCSS, TypeScript
-- localStorage para persistência de dados
+- localStorage + Firebase para persistência de dados
 
 ## 📦 Instalação
 
@@ -68,7 +76,14 @@ Você poderá gerar o APK para Android com o Capacitor:
 
 * [x] Dark mode
 * [x] Sistema de conquistas
-* [ ] Sincronização em nuvem (Firebase ou similar)
+* [x] Login com Firebase
+* [x] Criação de conta com Firebase
+* [x] Proteção de rotas (`AuthGuard`)
+* [ ] Logout com redirecionamento
+* [x] Exibir nome/email do usuário logado
+* [ ] Mensagens de erro personalizadas
+* [ ] Recuperação de senha
+* [ ] Sincronização completa de dados com Firebase
 * [ ] Compartilhamento de leituras com amigos
 * [ ] Notificações para lembrete de leitura
 * [ ] Acompanhamento de metas mensais
@@ -79,4 +94,4 @@ Desenvolvido por **Fábio Gonçalves**
 📨 [falsilgon@gmail.com](mailto:falsilgon@gmail.com)
 🔗 [LinkedIn](https://www.linkedin.com/in/f%C3%A1bio-gon%C3%A7alves-509bb330/)
 
-```
+##

@@ -3,8 +3,14 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{ titulo }}</ion-title>
+    <div class="hzalign">
+      <ion-title>{{ titulo }}</ion-title>
+      <span *ngIf="emailUsuario" class="wellcom-text">Bem vindo: {{ emailUsuario }}</span>
+    </div>
     <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        Sair
+      </ion-button>
       <ion-button (click)="alternarModoEscuro()">
         <ion-icon [name]="modoEscuroAtivo ? 'moon' : 'sunny'" slot="icon-only"></ion-icon>
       </ion-button>

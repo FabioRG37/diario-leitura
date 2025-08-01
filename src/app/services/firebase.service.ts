@@ -14,6 +14,5 @@ export class FirebaseService {
       mensagem: "Conexão com Firebase funcionando!",
       data: new Date()
     });
-    console.log("Documento adicionado com ID: ", docRef.id);
   }
 }
