@@ -1,0 +1,16 @@
+#userImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    padding: 1%;
+    border-radius: 50%;
+    background-color: #F5F5DC;
+}
+
+ion-img {
+    width: 120px; 
+    height: 120px; 
+    background: none;
+}

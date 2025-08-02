@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/meta/meta.module').then(m => m.MetaPageModule),
     canActivate: [AuthGuard]
    },
+   {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule),
+    canActivate: [AuthGuard]
+   }
 ];
 
 @NgModule({

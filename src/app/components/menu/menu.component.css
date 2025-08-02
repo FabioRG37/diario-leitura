@@ -2,6 +2,10 @@ ion-icon[name='home'] {
     color: #0054e9
 }
 
+ion-icon[name='perfil'] {
+    color: #2f2f2f
+}
+
 ion-icon[name='book'] { 
     color: #6030ff
 }
@@ -11,7 +15,7 @@ ion-icon[name='search'] {
 }
 
 ion-icon[name='stats-chart'] { 
-    color: #2f2f2f
+    color: #fc4b08
 }
 
 ion-icon[name='trophy'] { 

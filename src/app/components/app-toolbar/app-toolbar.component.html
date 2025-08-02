@@ -5,7 +5,10 @@
     </ion-buttons>
     <div class="hzalign">
       <ion-title>{{ titulo }}</ion-title>
-      <span *ngIf="emailUsuario" class="wellcom-text">Bem vindo: {{ emailUsuario }}</span>
+      <span 
+        *ngIf="nomeUsuario || emailUsuario" 
+        class="welcome-text">
+        Bem vindo: {{ nomeUsuario ? nomeUsuario : emailUsuario }}</span>
     </div>
     <ion-buttons slot="end">
       <ion-button (click)="logout()">

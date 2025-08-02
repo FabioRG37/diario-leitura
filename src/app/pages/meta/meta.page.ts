@@ -23,7 +23,6 @@ export class MetaPage {
   ionViewWillEnter() {
     // this.metas = this.metaService.listarMetas();
     this.metas = this.metaService.getMetas();
-    console.log("Metas: ", this.metas)
   }
 
   async abrirModalCriarMeta() {

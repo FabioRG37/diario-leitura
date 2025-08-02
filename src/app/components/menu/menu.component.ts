@@ -19,6 +19,7 @@ export class MenuComponent {
 
   appPages = [
     { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Perfil', url: '/perfil', icon: 'person' },
     { title: 'Estante', url: '/estante', icon: 'book' },
     { title: 'Pesquisar', url: '/busca', icon: 'search' },
     { title: 'Estatísticas', url: '/estatisticas', icon: 'stats-chart' },
