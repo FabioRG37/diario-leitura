@@ -14,6 +14,7 @@ export class PerfilPage implements OnInit {
   nome: string = '';
   fotoURL: string = '';
   novaSenha: string = '';
+  senhaAtual: string = '';
 
   constructor(
     private perfilService: PerfilService, 
@@ -76,6 +77,7 @@ export class PerfilPage implements OnInit {
                   toast.present();
                   this.novaSenha = '';
                 } catch (err) {
+                  console.error('Error ao alterar senha: ', err)
                   const toast = await this.toastCtrl.create({
                     message: 'Erro ao alterar senha: ' + (err instanceof Error ? err.message : String(err)),
                     duration: 3000,
@@ -86,7 +88,10 @@ export class PerfilPage implements OnInit {
               }
             }
           ]
-        })
+        });
+
+        await alert.present();
+
       } else {
         const toast = await this.toastCtrl.create({
           message: 'Perfil atualizado!',
