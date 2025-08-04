@@ -3,10 +3,16 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build diario-leitura",
+    "start": "ionic serve",
+    "build": "ionic build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "ionic-build": "ionic build --project=diario-leitura",
+    "android-build": "npm run ionic-build && npm run cap-sync && npm run cap-open",
+    "cap-sync": "npm exec cap sync",
+    "cap-open": "npm exec cap open android"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +26,7 @@
     "@angular/platform-browser": "^18.2.13",
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
+    "@capacitor/android": "^7.4.2",
     "@ionic/angular": "^8.7.1",
     "@ionic/core": "^8.7.1",
     "@ionic/storage-angular": "^4.0.0",
@@ -35,6 +42,8 @@
     "@angular-devkit/build-angular": "18.2.20",
     "@angular/cli": "^18.2.20",
     "@angular/compiler-cli": "^18.2.13",
+    "@capacitor/cli": "^7.4.2",
+    "@capacitor/core": "^7.4.2",
     "@ionic/angular-toolkit": "^9.0.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",

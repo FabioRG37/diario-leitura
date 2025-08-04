@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
+/www
 /dist
 /tmp
 /out-tsc
@@ -37,7 +38,15 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+*.log
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Capacitor build folders
+android/
+ios/
+
+# Capacitor config local files
+capacitor.config.ts
