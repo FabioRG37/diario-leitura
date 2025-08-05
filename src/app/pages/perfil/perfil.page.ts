@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { getStorage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
-import { Auth } from '@angular/fire/auth';
-import { EmailAuthProvider, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { EmailAuthProvider, getAuth, reauthenticateWithCredential, updatePassword } from 'firebase/auth';
+
+const auth = getAuth();
+const user = auth.currentUser;
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +21,6 @@ export class PerfilPage implements OnInit {
   constructor(
     private perfilService: PerfilService, 
     private toastCtrl: ToastController,
-    private auth: Auth,
     private alertCtrl: AlertController
   ) {}
 
@@ -44,8 +45,12 @@ export class PerfilPage implements OnInit {
   }
 
   async salvar() {
-    const user = this.auth.currentUser;
-    if (!user) return;
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      return;
+    }
 
     try {
       await this.perfilService.salvarPerfil({
@@ -56,7 +61,7 @@ export class PerfilPage implements OnInit {
       if (this.novaSenha && this.novaSenha.length >= 6) {
         const alert = await this.alertCtrl.create({
           header: 'Confirme a sua senha atual',
-          inputs: [{ name: 'senhaAtual', type: 'password', placeholder: 'Senha atual'}],
+          inputs: [{ name: 'senhaAtual', type: 'password', placeholder: 'Senha atual' }],
           buttons: [
             {
               text: 'Cancelar',
@@ -65,33 +70,34 @@ export class PerfilPage implements OnInit {
             {
               text: 'Confirmar',
               handler: async (data) => {
-                const cred = EmailAuthProvider.credential(user.email!, data.senhaAtual);
+
+                const credential = EmailAuthProvider.credential(user.email!, data.senhaAtual);
+
                 try {
-                  await reauthenticateWithCredential(user, cred);
+                  await reauthenticateWithCredential(user, credential);
                   await updatePassword(user, this.novaSenha);
+
                   const toast = await this.toastCtrl.create({
-                    message: 'Perfil e senha atualizados com sucesso!',
+                    message: 'Senha alterada com sucesso!',
                     duration: 3000,
                     color: 'success'
                   });
-                  toast.present();
+                  await toast.present();
+
                   this.novaSenha = '';
                 } catch (err) {
-                  console.error('Error ao alterar senha: ', err)
                   const toast = await this.toastCtrl.create({
                     message: 'Erro ao alterar senha: ' + (err instanceof Error ? err.message : String(err)),
                     duration: 3000,
                     color: 'danger'
                   });
-                  toast.present();
+                  await toast.present();
                 }
               }
             }
           ]
         });
-
         await alert.present();
-
       } else {
         const toast = await this.toastCtrl.create({
           message: 'Perfil atualizado!',
@@ -103,11 +109,12 @@ export class PerfilPage implements OnInit {
 
     } catch (err) {
       const toast = await this.toastCtrl.create({
-        message: "Erro ao salvar perfil: " + err,
+        message: 'Erro ao salvar perfil: ' + (err instanceof Error ? err.message : String(err)),
         duration: 3000,
         color: 'danger'
       });
       await toast.present();
     }
   }
+
 }
