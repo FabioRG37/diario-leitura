@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';
 import { LivroService } from 'src/app/services/livro.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-estante',
@@ -25,40 +27,39 @@ import { LivroService } from 'src/app/services/livro.service';
     ])
   ]
 })
-export class EstantePage implements OnInit {
+export class EstantePage {
   livros: any[] = [];
   filtro = 'todos';
+  livrosSub!: Subscription;
 
   constructor(
     private router: Router,
     private livroService: LivroService
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.carregarLivros();
-    this.livroService.getLivros().subscribe(livros => {
-      this.livros = livros;
-    })
   }
 
   carregarLivros() {
-    const dados = localStorage.getItem('estante');
-    const livrosRaw = dados ? JSON.parse(dados) : [];
+    if (this.livrosSub) this.livrosSub.unsubscribe();
 
-    this.livros = livrosRaw.map((livro: any) => {
-      const totalPaginas = livro.totalPaginas ?? livro.volumeInfo?.pageCount ?? 0;
-      const paginasLidas = Number(livro.paginasLidas ?? 0);
+    this.livrosSub = this.livroService.getLivros().subscribe(livros => {
+      this.livros = livros.map((livro: any) => {
+        const totalPaginas = livro.totalPaginas ?? livro.volumeInfo?.pageCount ?? 0;
+        const paginasLidas = Number(livro.paginasLidas ?? 0);
 
-      const progresso = totalPaginas > 0 ? paginasLidas / totalPaginas : 0;
-      const percentual = Math.round(progresso * 100);
+        const progresso = totalPaginas > 0 ? paginasLidas / totalPaginas : 0;
+        const percentual = Math.round(progresso * 100);
 
-      return {
-        ...livro,
-        totalPaginas,
-        paginasLidas,
-        progresso,
-        percentual
-      };
+        return {
+          ...livro,
+          totalPaginas,
+          paginasLidas,
+          progresso,
+          percentual
+        };
+      });
     });
   }    
 
@@ -75,23 +76,31 @@ export class EstantePage implements OnInit {
     event.stopPropagation();
     const conf = confirm("Mudar para lendo?")
     if (!conf) return;
-    const index = this.livros.findIndex((l: any) => l.id === id);
-    if (index !== -1) {
-      this.livros[index].status = 'lendo';
-      localStorage.setItem('estante', JSON.stringify(this.livros))
-    }
-    this.router.navigate(['/estante']);
+
+    this.livroService.atualizarStatus(id, 'lendo')
+      .then(() => {
+        console.log('Status atualizado com sucesso');
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar status: ', error);
+      });
   }
 
   removerLivro(event: Event, id: string) {
-    let conf = confirm("Deseja realmente excluir este livro?")
-    if(conf) {
-      event.stopPropagation(); // Impede a navegação
-      this.livros = this.livros.filter(livro => livro.id !== id);
-      localStorage.setItem('estante', JSON.stringify(this.livros));
-    } else {
-      event.stopPropagation();
-      return
-    }
+    event.stopPropagation(); // Impede a navegação
+    const conf = confirm("Deseja realmente excluir este livro?")
+    if (!conf) return;
+    
+    this.livroService.deleteLivro(id)
+      .then(() => {
+        console.log("Livro removido com sucesso.");
+      })
+      .catch(error => {
+        console.error("Erro ao remover livro:", error);
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.livrosSub) this.livrosSub.unsubscribe();
   }
 }
